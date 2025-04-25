@@ -9,6 +9,7 @@ const initialState = {
 };
 export const Contact = (props) => {
   const [{ name, email, message }, setState] = useState(initialState);
+  const [popupVisible, setPopupVisible] = useState(false); // State for popup visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,25 +17,25 @@ export const Contact = (props) => {
   };
   const clearState = () => setState({ ...initialState });
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(name, email, message);
 
-    {/* replace below with your own Service ID, Template ID and Public Key from your EmailJS account */ }
-
     emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_PUBLIC_KEY")
+      .sendForm("service_g60h0x2", "template_p6b793e", e.target, "5FhQ2BfWgzx87stB0")
       .then(
         (result) => {
           console.log(result.text);
           clearState();
+          setPopupVisible(true); // Show popup on success
+          setTimeout(() => setPopupVisible(false), 3000); // Hide popup after 3 seconds
         },
         (error) => {
           console.log(error.text);
         }
       );
   };
+
   return (
     <div>
       <div id="contact">
@@ -45,7 +46,7 @@ export const Contact = (props) => {
                 <h2>Get In Touch</h2>
                 <p>
                   Please fill out the form below to send us an email and we will
-                  get back to you as soon as possible.
+                  get back to you as soon as possible. You will recieve a confirmation email once your message has been sent.
                 </p>
               </div>
               <form name="sentMessage" validate onSubmit={handleSubmit}>
@@ -150,6 +151,24 @@ export const Contact = (props) => {
           </div>
         </div>
       </div>
+      {popupVisible && (
+        <div
+          style={{
+            position: "fixed",
+            top: "20px",
+            right: "20px",
+            backgroundColor: "#4caf50",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.3)",
+            zIndex: 1000,
+            fontSize: "16px",
+          }}
+        >
+          <p>Message Sent Successfully!</p>
+        </div>
+      )}
       <div id="footer">
         <div className="container text-center">
           <p>
