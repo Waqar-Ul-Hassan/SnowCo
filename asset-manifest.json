@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SnowCo/static/css/main.ae42ac5f.css",
+    "main.js": "/SnowCo/static/js/main.ac07ba1c.js",
+    "index.html": "/SnowCo/index.html",
+    "main.ae42ac5f.css.map": "/SnowCo/static/css/main.ae42ac5f.css.map",
+    "main.ac07ba1c.js.map": "/SnowCo/static/js/main.ac07ba1c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ae42ac5f.css",
+    "static/js/main.ac07ba1c.js"
+  ]
+}
